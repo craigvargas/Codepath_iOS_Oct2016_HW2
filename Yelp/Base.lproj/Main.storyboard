@@ -137,7 +137,7 @@
         <!--Filters-->
         <scene sceneID="gki-MB-o4l">
             <objects>
-                <viewController id="nGp-Ut-AMT" sceneMemberID="viewController">
+                <viewController id="nGp-Ut-AMT" customClass="FiltersViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vVD-Ym-pvL"/>
                         <viewControllerLayoutGuide type="bottom" id="scU-pi-KLc"/>
@@ -145,12 +145,128 @@
                     <view key="view" contentMode="scaleToFill" id="H3T-Bo-Lsz" customClass="Filters">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="125" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="lWu-eu-gjL">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" rowHeight="125" id="HTU-FN-WFB" customClass="FilterTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="120" width="375" height="125"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HTU-FN-WFB" id="raK-Yl-dCq">
+                                            <frame key="frameInset" width="375" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKs-AY-WBD" userLabel="Switch View">
+                                                    <subviews>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MbI-KL-nYY"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh7-J8-Cdk">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MbI-KL-nYY" secondAttribute="bottom" constant="4" id="Kqf-4R-mIe"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MbI-KL-nYY" secondAttribute="trailing" constant="8" id="d29-36-T35"/>
+                                                        <constraint firstItem="MbI-KL-nYY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yKs-AY-WBD" secondAttribute="top" constant="4" id="fvF-26-DDI"/>
+                                                        <constraint firstItem="MbI-KL-nYY" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="i87-y9-o0W"/>
+                                                        <constraint firstItem="hh7-J8-Cdk" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="jsO-TU-IgT"/>
+                                                        <constraint firstItem="hh7-J8-Cdk" firstAttribute="leading" secondItem="yKs-AY-WBD" secondAttribute="leading" constant="8" id="pTC-u1-7Ig"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3q-tI-3rJ" userLabel="Distance Segment">
+                                                    <subviews>
+                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="dMW-FX-s6b">
+                                                            <segments>
+                                                                <segment title="0.5"/>
+                                                                <segment title="1"/>
+                                                                <segment title="5"/>
+                                                                <segment title="10"/>
+                                                                <segment title="25"/>
+                                                            </segments>
+                                                        </segmentedControl>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="dMW-FX-s6b" secondAttribute="bottom" constant="4" id="0uR-Oc-CmI"/>
+                                                        <constraint firstItem="dMW-FX-s6b" firstAttribute="leading" secondItem="e3q-tI-3rJ" secondAttribute="leading" constant="2" id="Q57-nK-eoX"/>
+                                                        <constraint firstItem="dMW-FX-s6b" firstAttribute="top" secondItem="e3q-tI-3rJ" secondAttribute="top" constant="4" id="mMH-Ep-g5a"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dMW-FX-s6b" secondAttribute="trailing" constant="2" id="qbL-56-lhE"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W3I-3t-AsR" userLabel="Sort Segment">
+                                                    <subviews>
+                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="tIg-Zp-3me">
+                                                            <segments>
+                                                                <segment title="Match"/>
+                                                                <segment title="Distance"/>
+                                                                <segment title="Rated"/>
+                                                            </segments>
+                                                        </segmentedControl>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="tIg-Zp-3me" secondAttribute="bottom" constant="4" id="KtT-6g-nHB"/>
+                                                        <constraint firstItem="tIg-Zp-3me" firstAttribute="top" secondItem="W3I-3t-AsR" secondAttribute="top" constant="4" id="e7v-3j-JiR"/>
+                                                        <constraint firstItem="tIg-Zp-3me" firstAttribute="leading" secondItem="W3I-3t-AsR" secondAttribute="leading" constant="2" id="eRx-DM-N93"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tIg-Zp-3me" secondAttribute="trailing" constant="2" id="kYm-mT-ces"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="e3q-tI-3rJ" secondAttribute="bottom" id="8hF-yN-exs"/>
+                                                <constraint firstAttribute="bottom" secondItem="W3I-3t-AsR" secondAttribute="bottom" id="AAf-CK-txO"/>
+                                                <constraint firstAttribute="bottom" secondItem="yKs-AY-WBD" secondAttribute="bottom" id="Epq-cf-iDF"/>
+                                                <constraint firstAttribute="trailing" secondItem="W3I-3t-AsR" secondAttribute="trailing" id="RBk-eB-4Ok"/>
+                                                <constraint firstItem="e3q-tI-3rJ" firstAttribute="top" secondItem="raK-Yl-dCq" secondAttribute="top" id="WEn-eg-rqS"/>
+                                                <constraint firstItem="W3I-3t-AsR" firstAttribute="top" secondItem="raK-Yl-dCq" secondAttribute="top" id="hdY-pf-IDY"/>
+                                                <constraint firstAttribute="trailing" secondItem="yKs-AY-WBD" secondAttribute="trailing" id="i0S-R2-E6H"/>
+                                                <constraint firstAttribute="trailing" secondItem="e3q-tI-3rJ" secondAttribute="trailing" id="ogI-k2-hvi"/>
+                                                <constraint firstItem="yKs-AY-WBD" firstAttribute="top" secondItem="raK-Yl-dCq" secondAttribute="top" id="qaA-ry-DgW"/>
+                                                <constraint firstItem="e3q-tI-3rJ" firstAttribute="leading" secondItem="raK-Yl-dCq" secondAttribute="leading" id="uuJ-JG-7EP"/>
+                                                <constraint firstItem="yKs-AY-WBD" firstAttribute="leading" secondItem="raK-Yl-dCq" secondAttribute="leading" id="v6z-XK-HPL"/>
+                                                <constraint firstItem="W3I-3t-AsR" firstAttribute="leading" secondItem="raK-Yl-dCq" secondAttribute="leading" id="x76-al-wfn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="distanceSegmentedControl" destination="dMW-FX-s6b" id="KdY-kv-xZW"/>
+                                            <outlet property="distanceView" destination="e3q-tI-3rJ" id="ibC-FV-n5H"/>
+                                            <outlet property="filterLabel" destination="hh7-J8-Cdk" id="sjB-PF-ZQd"/>
+                                            <outlet property="filterSwitch" destination="MbI-KL-nYY" id="rkp-g9-umm"/>
+                                            <outlet property="sortSegmentedControl" destination="tIg-Zp-3me" id="Qrc-Cf-2sI"/>
+                                            <outlet property="sortView" destination="W3I-3t-AsR" id="lrn-fN-sd6"/>
+                                            <outlet property="switchView" destination="yKs-AY-WBD" id="gug-dr-BZB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="scU-pi-KLc" firstAttribute="top" secondItem="lWu-eu-gjL" secondAttribute="bottom" id="2Ty-IG-f93"/>
+                            <constraint firstItem="lWu-eu-gjL" firstAttribute="leading" secondItem="H3T-Bo-Lsz" secondAttribute="leading" id="TqY-9b-Lqh"/>
+                            <constraint firstAttribute="trailing" secondItem="lWu-eu-gjL" secondAttribute="trailing" id="VsX-4w-qLd"/>
+                            <constraint firstItem="lWu-eu-gjL" firstAttribute="top" secondItem="vVD-Ym-pvL" secondAttribute="bottom" id="joP-d4-5dN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="0lP-Ze-Ky8">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jbT-a8-ui6"/>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="y0c-Wt-c3v"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jbT-a8-ui6">
+                            <connections>
+                                <action selector="onCancelButtonTap:" destination="nGp-Ut-AMT" id="X2M-UY-t8v"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="y0c-Wt-c3v">
+                            <connections>
+                                <action selector="onSearchButtonTap:" destination="nGp-Ut-AMT" id="XFr-Re-ugx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cancelBarButton" destination="jbT-a8-ui6" id="exO-F7-RQh"/>
+                        <outlet property="filtersTableView" destination="lWu-eu-gjL" id="Ow7-BT-l0x"/>
+                        <outlet property="searchBarButton" destination="y0c-Wt-c3v" id="6DD-eH-EDc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qPg-gW-sQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
