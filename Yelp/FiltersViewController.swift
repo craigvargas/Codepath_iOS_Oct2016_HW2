@@ -8,7 +8,15 @@
 
 import UIKit
 
+@objc protocol FiltersViewControllerDelegate {
+    @objc optional func filtersViewController(filtersViewController: FiltersViewController, dictionaryOfSwitchFiltersTurnedOn switchFilterIsOnDict: Dictionary<String,Bool>)
+    @objc optional func filtersViewController(filtersViewController: FiltersViewController, dictionaryOfSelectionFilterIndexes selectionFilterIndexDict: Dictionary<String,Int>)
+    @objc optional func filtersViewController(filtersViewController: FiltersViewController, didTapSearchButton seachButtonWasTapped: Bool)
+}
+
 class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilterCellDelegate {
+    
+    var delegate: FiltersViewControllerDelegate?
 
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var searchBarButton: UIBarButtonItem!
@@ -20,15 +28,15 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     let sortType = "sort"
     
     let categories = Filter.yelpCuisineCategories()
-    let tableStructure = [["name": "Deals", "type": "switch", "data":Filter.deals],
-                          ["name": "Within How Many Miles?", "type": "distance", "data": Filter.distances],
-                          ["name": "Sort By", "type": "sort", "data": Filter.sortOptions],
-                          ["name": "Categories", "type": "switch", "data": Filter.categories]]
+    let tableStructure = [["name": Filter.dealsTitle,       "type": Filter.switchKey,   "data": Filter.deals],
+                          ["name": Filter.distanceTitle,    "type": Filter.distanceKey, "data": Filter.distances],
+                          ["name": Filter.sortByTitle,      "type": Filter.sortByKey,   "data": Filter.sortOptions],
+                          ["name": Filter.categoriesTitle,  "type": Filter.switchKey,   "data": Filter.categories]]
     let separator = "&@&@"
     
-//    var filterIsOn: [String:Bool] = [String:Bool]()
-    var filterIsOn: [String:Bool] = [String:Bool]()
-    var filterSelectionIndex: [String:Int] = [String:Int]()
+//    var switchFilterIsOnDict: [String:Bool] = [String:Bool]()
+    var switchFilterIsOnDict: [String:Bool] = [String:Bool]()
+    var selectionFilterIndexDict: [String:Int] = [String:Int]()
     
     //*
     //View Controller Lifecylce Overrides
@@ -56,6 +64,9 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func onSearchButtonTap(_ sender: UIBarButtonItem) {
+        delegate?.filtersViewController?(filtersViewController: self, dictionaryOfSwitchFiltersTurnedOn: switchFilterIsOnDict)
+        delegate?.filtersViewController?(filtersViewController: self, dictionaryOfSelectionFilterIndexes: selectionFilterIndexDict)
+        delegate?.filtersViewController?(filtersViewController: self, didTapSearchButton: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -66,7 +77,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return categories.count
         let type = tableStructure[section]["type"] as! String
-        if type == switchType{
+        if type == Filter.switchKey{
             let sectionData = tableStructure[section]["data"] as! [Dictionary<String,Any>]
             return sectionData.count
         }else{
@@ -83,26 +94,26 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.hideViews()
         
         switch type{
-            case switchType:
+            case Filter.switchKey:
                 cell.switchView.isHidden = false
                 cell.filterLabel.text = (tableStructure[indexPath.section]["data"] as! [Dictionary<String,Any>])[indexPath.row]["name"] as? String
                 //determine on/off state
-                if let isOn = filterIsOn["\(indexPath.section)" + separator + cell.filterLabel.text!]{
+                if let isOn = switchFilterIsOnDict["\(indexPath.section)" + Filter.separator + cell.filterLabel.text!]{
                     cell.filterSwitch.isOn = isOn
                 }else{
                     cell.filterSwitch.isOn = false
                 }
                 break
-        case distanceType:
+        case Filter.distanceKey:
             cell.distanceView.isHidden = false
-            if filterSelectionIndex[distanceType] != nil{
-                cell.distanceSegmentedControl.selectedSegmentIndex = filterSelectionIndex[distanceType]!
+            if selectionFilterIndexDict[Filter.distanceKey] != nil{
+                cell.distanceSegmentedControl.selectedSegmentIndex = selectionFilterIndexDict[Filter.distanceKey]!
             }
             break
-        case sortType:
+        case Filter.sortByKey:
             cell.sortView.isHidden = false
-            if filterSelectionIndex[sortType] != nil{
-                cell.sortSegmentedControl.selectedSegmentIndex = filterSelectionIndex[sortType]!
+            if selectionFilterIndexDict[Filter.sortByKey] != nil{
+                cell.sortSegmentedControl.selectedSegmentIndex = selectionFilterIndexDict[Filter.sortByKey]!
             }
             break
         default:
@@ -111,7 +122,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         
 //        cell.filterLabel.text = (tableStructure[indexPath.section]["data"] as! [Dictionary<String,Any>])[indexPath.row]["name"] as? String
 //        
-//        if let isOn = filterIsOn["\(indexPath.section)" + separator + cell.filterLabel.text!]{
+//        if let isOn = switchFilterIsOnDict["\(indexPath.section)" + Filter.separator + cell.filterLabel.text!]{
 //            cell.filterSwitch.isOn = isOn
 //        }else{
 //            cell.filterSwitch.isOn = false
@@ -131,27 +142,31 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func filterCell(filterCell: FilterTableViewCell, didChangeValue isOn: Bool) {
-//        filterIsOn[filterCell.filterLabel.text!] = isOn
+//        switchFilterIsOnDict[filterCell.filterLabel.text!] = isOn
         let indexPath = filtersTableView.indexPath(for: filterCell)!
-        filterIsOn["\(indexPath.section)" + separator + filterCell.filterLabel.text!] = isOn
-        printFilterIsOn()
+        if(tableStructure[indexPath.section]["name"] as! String == Filter.dealsTitle){
+            switchFilterIsOnDict["\(indexPath.section)" + Filter.separator + Filter.dealsTitle] = isOn
+        }else{
+        switchFilterIsOnDict["\(indexPath.section)" + Filter.separator + Filter.categories[indexPath.row]["code"]!] = isOn
+        }
+//        printFilterIsOn()
     }
     
     func filterCell(filterCell: FilterTableViewCell, didChangeSelection index: Int){
         let indexPath = filtersTableView.indexPath(for: filterCell)!
-        filterSelectionIndex[tableStructure[indexPath.section]["type"] as! String] = index
-        for(k,v) in filterSelectionIndex{
+        selectionFilterIndexDict[tableStructure[indexPath.section]["type"] as! String] = index
+        for(k,v) in selectionFilterIndexDict{
             print("Key: \(k), Value: \(v)")
         }
     }
 
     
     func printFilterIsOn(){
-        for (filterId, isOn) in filterIsOn{
-            let range = filterId.range(of: separator, options: .caseInsensitive, range: nil, locale: nil)
+        for (filterId, isOn) in switchFilterIsOnDict{
+            let range = filterId.range(of: Filter.separator, options: .caseInsensitive, range: nil, locale: nil)
             let sectionString = filterId.substring(to: range!.lowerBound)
             let filterString = filterId.substring(from: range!.upperBound)
-//            if let separatorIndex = filterId.characters.index(of: separator.characters) {
+//            if let separatorIndex = filterId.characters.index(of: Filter.separator.characters) {
 //                let section = String(filterId.characters.prefix(upTo: separatorIndex))
 //                print(section)
 //            }

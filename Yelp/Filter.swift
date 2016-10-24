@@ -14,13 +14,26 @@ class Filter: NSObject {
         return categories
     }
     
+    static let switchKey = "switch"
+    static let dealsKey = "deals"
+    static let distanceKey = "distance"
+    static let sortByKey = "sort"
+    static let categoriesKey = "categories"
+    
+    static let dealsTitle = "Deals"
+    static let distanceTitle = "Within How Many Miles?"
+    static let sortByTitle = "Sort By?"
+    static let categoriesTitle = "Categories"
+    
+    static let separator = "&@&@"
+    
     static let deals = [["name":"Offering A Deal"]]
     
-    static let distances = [["name": "0.25 Miles", "numMiles": 0.25],
-                            ["name": "0.5 Miles", "numMiles": 0.5],
-                            ["name": "1 Mile", "numMiles": 1.0],
-                            ["name": "5 Miles", "numMiles": 5.0],
-                            ["name": "20 Miles", "numMiles": 20.0]]
+    static let distances = [["name": "0.25 Miles", "value": 0.25],
+                            ["name": "0.5 Miles", "value": 0.5],
+                            ["name": "1 Mile", "value": 1.0],
+                            ["name": "5 Miles", "value": 5.0],
+                            ["name": "20 Miles", "value": 20.0]]
 
     
     static let sortOptions = [["name": "Best Matched", "option": YelpSortMode.bestMatched],
