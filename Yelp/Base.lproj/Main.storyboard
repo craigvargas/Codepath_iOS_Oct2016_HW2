@@ -16,14 +16,14 @@
                         <viewControllerLayoutGuide type="bottom" id="VBY-gq-v8E"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XhR-oz-92f">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                        <rect key="frame" x="0.0" y="64" width="500" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XLJ-4s-WOk">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessTableViewCell" rowHeight="108" id="jxi-RI-onf" customClass="BusinessTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="500" height="108"/>
+                                        <rect key="frame" x="0.0" y="28" width="500" height="108"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jxi-RI-onf" id="9Fb-0w-exn">
                                             <frame key="frameInset" width="500" height="107.5"/>
@@ -108,7 +108,6 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="XLJ-4s-WOk" secondAttribute="trailing" id="80a-jK-SSd"/>
                             <constraint firstItem="XLJ-4s-WOk" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" id="SDt-wH-oup"/>
@@ -143,38 +142,19 @@
                         <viewControllerLayoutGuide type="bottom" id="scU-pi-KLc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3T-Bo-Lsz" customClass="Filters">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="125" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="lWu-eu-gjL">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" rowHeight="125" id="HTU-FN-WFB" customClass="FilterTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="120" width="375" height="125"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HTU-FN-WFB" id="raK-Yl-dCq">
-                                            <frame key="frameInset" width="375" height="124"/>
+                                            <frame key="frameInset" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKs-AY-WBD" userLabel="Switch View">
-                                                    <subviews>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MbI-KL-nYY"/>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh7-J8-Cdk">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MbI-KL-nYY" secondAttribute="bottom" constant="4" id="Kqf-4R-mIe"/>
-                                                        <constraint firstAttribute="trailing" secondItem="MbI-KL-nYY" secondAttribute="trailing" constant="8" id="d29-36-T35"/>
-                                                        <constraint firstItem="MbI-KL-nYY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yKs-AY-WBD" secondAttribute="top" constant="4" id="fvF-26-DDI"/>
-                                                        <constraint firstItem="MbI-KL-nYY" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="i87-y9-o0W"/>
-                                                        <constraint firstItem="hh7-J8-Cdk" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="jsO-TU-IgT"/>
-                                                        <constraint firstItem="hh7-J8-Cdk" firstAttribute="leading" secondItem="yKs-AY-WBD" secondAttribute="leading" constant="8" id="pTC-u1-7Ig"/>
-                                                    </constraints>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3q-tI-3rJ" userLabel="Distance Segment">
                                                     <subviews>
                                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="dMW-FX-s6b">
@@ -213,6 +193,36 @@
                                                         <constraint firstAttribute="trailing" secondItem="tIg-Zp-3me" secondAttribute="trailing" constant="2" id="kYm-mT-ces"/>
                                                     </constraints>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKs-AY-WBD" userLabel="Switch View">
+                                                    <subviews>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="yelp_red" offImage="yelp_black" translatesAutoresizingMaskIntoConstraints="NO" id="MbI-KL-nYY">
+                                                            <color key="onTintColor" red="0.70588235290000001" green="0.15686274510000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="thumbTintColor" red="0.14901960784313725" green="0.23529411764705882" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </switch>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh7-J8-Cdk">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yelp_red_2" translatesAutoresizingMaskIntoConstraints="NO" id="o92-8C-Tb7" userLabel="Toggle Image">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="XAQ-ym-KwM"/>
+                                                                <constraint firstAttribute="height" constant="25" id="kNM-xi-pBd"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="o92-8C-Tb7" secondAttribute="trailing" constant="16" id="0HU-Hv-YKb"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MbI-KL-nYY" secondAttribute="bottom" constant="4" id="Kqf-4R-mIe"/>
+                                                        <constraint firstItem="o92-8C-Tb7" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="aLf-D1-L34"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MbI-KL-nYY" secondAttribute="trailing" constant="8" id="d29-36-T35"/>
+                                                        <constraint firstItem="MbI-KL-nYY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yKs-AY-WBD" secondAttribute="top" constant="4" id="fvF-26-DDI"/>
+                                                        <constraint firstItem="MbI-KL-nYY" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="i87-y9-o0W"/>
+                                                        <constraint firstItem="hh7-J8-Cdk" firstAttribute="centerY" secondItem="yKs-AY-WBD" secondAttribute="centerY" id="jsO-TU-IgT"/>
+                                                        <constraint firstItem="hh7-J8-Cdk" firstAttribute="leading" secondItem="yKs-AY-WBD" secondAttribute="leading" constant="8" id="pTC-u1-7Ig"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="e3q-tI-3rJ" secondAttribute="bottom" id="8hF-yN-exs"/>
@@ -232,6 +242,7 @@
                                         <connections>
                                             <outlet property="distanceSegmentedControl" destination="dMW-FX-s6b" id="KdY-kv-xZW"/>
                                             <outlet property="distanceView" destination="e3q-tI-3rJ" id="ibC-FV-n5H"/>
+                                            <outlet property="filterImageView" destination="o92-8C-Tb7" id="L1Y-WY-xjh"/>
                                             <outlet property="filterLabel" destination="hh7-J8-Cdk" id="sjB-PF-ZQd"/>
                                             <outlet property="filterSwitch" destination="MbI-KL-nYY" id="rkp-g9-umm"/>
                                             <outlet property="sortSegmentedControl" destination="tIg-Zp-3me" id="Qrc-Cf-2sI"/>
@@ -277,9 +288,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NyB-wh-OFI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SYb-ag-f8e">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="SYb-ag-f8e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.70588235290000001" green="0.15686274510000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -295,9 +308,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nhc-aa-svF" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zqi-gH-TWe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Zqi-gH-TWe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.70588235290000001" green="0.15686274510000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -309,4 +324,9 @@
             <point key="canvasLocation" x="4088.8000000000002" y="316.19190404797604"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="yelp_black" width="256" height="256"/>
+        <image name="yelp_red" width="1024" height="1024"/>
+        <image name="yelp_red_2" width="512" height="512"/>
+    </resources>
 </document>

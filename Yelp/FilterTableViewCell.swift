@@ -18,6 +18,7 @@ class FilterTableViewCell: UITableViewCell {
     @IBOutlet weak var switchView: UIView!
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var filterSwitch: UISwitch!
+    @IBOutlet weak var filterImageView: UIImageView!
     
     @IBOutlet weak var distanceView: UIView!
     @IBOutlet weak var distanceSegmentedControl: UISegmentedControl!
@@ -67,5 +68,12 @@ class FilterTableViewCell: UITableViewCell {
         sortView.isHidden = true
     }
 
+    func resetSwitchView(){
+        filterSwitch.isHidden = true
+        filterImageView.isHidden = true
+        switchView.backgroundColor = UIColor.white
+        filterLabel.textColor = UIColor.black
+        filterImageView.image = #imageLiteral(resourceName: "yelp_red_2")
+    }
 
 }

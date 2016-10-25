@@ -15,6 +15,8 @@ class Filter: NSObject {
     }
     
     static let switchKey = "switch"
+    static let selectionKey = "selection"
+    
     static let dealsKey = "deals"
     static let distanceKey = "distance"
     static let sortByKey = "sort"
@@ -29,11 +31,11 @@ class Filter: NSObject {
     
     static let deals = [["name":"Offering A Deal"]]
     
-    static let distances = [["name": "0.25 Miles", "value": 0.25],
-                            ["name": "0.5 Miles", "value": 0.5],
+    static let distances = [["name": "0.5 Miles", "value": 0.5],
                             ["name": "1 Mile", "value": 1.0],
                             ["name": "5 Miles", "value": 5.0],
-                            ["name": "20 Miles", "value": 20.0]]
+                            ["name": "10 Miles", "value": 10.0],
+                            ["name": "25 Miles", "value": 25.0]]
 
     
     static let sortOptions = [["name": "Best Matched", "option": YelpSortMode.bestMatched],
